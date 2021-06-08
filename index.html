@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Houdini Fleck</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Fraunces", Georgia;
+      }
+
+      .center-xy {
+        display: grid;
+        place-items: center;
+        min-height: 100vh;
+      }
+
+      .fleck {
+        --fleck-seed: 123456;
+        --fleck-count: 500;
+        --fleck-color-1: #d78e75;
+        --fleck-color-2: #6a6e70;
+        --fleck-color-3: #e9e4e1;
+        --fleck-color-4: #e7b68b;
+
+        --background-color: #e8b09b;
+
+        background-color: var(--background-color);
+        background-image: paint(fleck);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="fleck center-xy"></div>
+    <script>
+      (async function () {
+        if (CSS["paintWorklet"] === undefined) {
+          await import("https://unpkg.com/css-paint-polyfill");
+        }
+
+        CSS.paintWorklet.addModule("./fleck-worklet.bundle.js");
+      })();
+    </script>
+  </body>
+</html>
