@@ -1,6 +1,6 @@
 {
   "name": "@georgedoescode/houdini-fleck",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "fleck-worklet.bundle.js",
   "scripts": {
