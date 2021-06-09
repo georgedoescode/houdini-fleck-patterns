@@ -28,8 +28,14 @@
       }
 
       .fleck {
+        width: 100vw;
+        height: 100vh;
+      }
+
+      .fleck {
         --fleck-seed: 123456;
-        --fleck-count: 500;
+        --fleck-count: 560;
+        --fleck-size-base: 8px;
         --fleck-color-1: #d78e75;
         --fleck-color-2: #6a6e70;
         --fleck-color-3: #e9e4e1;
@@ -43,7 +49,7 @@
     </style>
   </head>
   <body>
-    <div class="fleck center-xy"></div>
+    <div class="fleck"></div>
     <script>
       (async function () {
         if (CSS["paintWorklet"] === undefined) {

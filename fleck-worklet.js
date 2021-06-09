@@ -20,8 +20,7 @@ class Fleck {
     return [
       "--fleck-seed",
       "--fleck-count",
-      "--min-fleck-size",
-      "--max-fleck-size",
+      "--fleck-size-base",
       ...FLECK_COLOR_PROPS,
     ];
   }
@@ -42,6 +41,7 @@ class Fleck {
   paint(ctx, size, props) {
     const seed = this.parseProp(props.get("--fleck-seed"));
     const count = this.parseProp(props.get("--fleck-count"));
+    const baseSize = this.parseProp(props.get("--fleck-size-base"), true);
     const colors = this.getDefinedColors(props);
 
     const width = size.width;
@@ -56,7 +56,7 @@ class Fleck {
       const center = new Vector2D(random(0, width), random(0, height));
 
       // Ensure "flecks" scale to the size of the element
-      let radius = (width * height) / 150000;
+      let radius = baseSize;
       // Most of the time, do a little fleck
       if (random(0, 1) > 0.125) radius /= 2;
       // Every now and then, do a big fleck

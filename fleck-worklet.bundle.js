@@ -208,8 +208,7 @@
       return [
         "--fleck-seed",
         "--fleck-count",
-        "--min-fleck-size",
-        "--max-fleck-size",
+        "--fleck-size-base",
         ...FLECK_COLOR_PROPS
       ];
     }
@@ -225,6 +224,7 @@
     paint(ctx, size, props) {
       const seed = this.parseProp(props.get("--fleck-seed"));
       const count = this.parseProp(props.get("--fleck-count"));
+      const baseSize = this.parseProp(props.get("--fleck-size-base"), true);
       const colors = this.getDefinedColors(props);
       const width = size.width;
       const height = size.height;
@@ -234,7 +234,7 @@
         const points = [];
         const angleStep = Math.PI * 2 / numPoints;
         const center = new Vector2D(random2(0, width), random2(0, height));
-        let radius = width * height / 15e4;
+        let radius = baseSize;
         if (random2(0, 1) > 0.125)
           radius /= 2;
         if (random2(0, 1) > 0.925)
